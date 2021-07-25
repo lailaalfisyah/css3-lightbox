@@ -11,7 +11,7 @@
 	clear: both;
 }
 
-/* UTAMA */
+/* THUMBNAIL */
 
 body {
 	font: 18px/36px 'Alex Brush', 'Arial Narrow', arial, sans-serif;
@@ -35,8 +35,8 @@ h1 {
 }
 
 .gallery li,
-.gallery li img,
-.gallery li span {
+.gallery li a img,
+.gallery li a span {
 	border-radius: 50%;
 	width: 120px;
 	height: 120px;
@@ -69,4 +69,113 @@ h1 {
 .gallery li a:hover span {
 	opacity: 1;
 	transform: scale(1) rotate(360deg);
+}
+
+/* FULL PIC */
+
+.overlay {
+	width: 0;
+	height: 0;
+	overflow: hidden;
+	position: fixed;
+	z-index: 9999;
+	transition: .8s;
+	text-align: center;
+	padding: 100px 0;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+}
+
+.overlay:target {
+	width: auto;
+	height: auto;
+	background-color: rgba(0,0,0,.8);
+
+}
+
+.overlay img {
+	max-height: 100%;
+	box-shadow: 0px 0px 15px lightyellow;
+}
+
+.overlay:target img {
+	animation: fade .8s;
+}
+
+.overlay .close {
+	font-family: arial;
+	text-decoration: none;
+	color: black;
+	background-color: lightyellow;
+	font-weight: bold;
+	line-height: 20px;
+	width: 20px;
+	height: 20px;
+	border: 2px solid black;
+	box-shadow: 0 0 3px black;
+	position: absolute;
+	top: 50px;
+	left: 50%;
+	margin-left: -10px;
+	opacity: 0;
+}
+
+.overlay:target .close {
+	animation: slideDownFade .5s .5s forwards;
+
+}
+
+.overlay:target .next,
+.overlay:target .prev {
+	animation: fade .5s .5s forwards;
+}
+
+/* NAVIGASI */
+
+.next,
+.prev {
+	width: 100px;
+	height: 100px;
+	font-size: 100px;
+	font-family: arial;
+	color: lightyellow;
+	text-shadow: 0 0 10px black;
+	text-decoration: none;
+	position: absolute;
+	top: 45%;
+	opacity: 0;
+}
+
+.next {
+	margin-left: 50px;
+}
+
+.prev {
+	margin-left: -150px;
+}
+
+/* ANIMATION */
+
+@keyframes fade {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+@keyframes slideDownFade {
+	0% {
+		opacity: 0;
+		margin-top: -20px;
+	}
+
+	100% {
+		opacity: 1;
+		margin-top: 0;
+	}
 }
